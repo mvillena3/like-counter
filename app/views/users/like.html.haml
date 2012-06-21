@@ -1,0 +1,12 @@
+%h1 Like him if you want 
+
+%table
+  %tr
+    %th Name
+    %th Likes
+
+  - @users.each do |user|
+    %tr
+      %td= user.name
+      %td= user.likes
+      %td= button_to 'Like me'

@@ -1,4 +1,9 @@
 LikeCounter::Application.routes.draw do
+  resources :users
+
+  root to: 'users#like'
+  match '/like', to: 'users#like'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -40,7 +45,7 @@ LikeCounter::Application.routes.draw do
   #   end
 
   # Sample resource route within a namespace:
-  #   namespace :admin do
+  #  /namespace :admin do
   #     # Directs /admin/products/* to Admin::ProductsController
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
