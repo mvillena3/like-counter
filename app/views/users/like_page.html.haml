@@ -9,4 +9,4 @@
     %tr
       %td= user.name
       %td= user.likes
-      %td= button_to 'Like me'
+      %td= button_to 'Like me', likes_users_path(id: user.id), method: :put

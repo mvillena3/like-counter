@@ -82,7 +82,15 @@ class UsersController < ApplicationController
     end
   end
 
-  def like
+  def like_page
     @users = User.all
   end
+
+  def likes
+    user = User.find_by_id!(params[:id])
+    user.increment!(:likes, 5)
+    user.save!
+    redirect_to root_path 
+  end
+
 end

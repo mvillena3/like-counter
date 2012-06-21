@@ -1,8 +1,12 @@
 LikeCounter::Application.routes.draw do
-  resources :users
+  resources :users do
+    collection do
+      put 'likes'
+    end
+  end
 
-  root to: 'users#like'
-  match '/like', to: 'users#like'
+  root to: 'users#like_page'
+  match '/like', to: 'users#like_page'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
