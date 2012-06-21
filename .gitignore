@@ -13,3 +13,9 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Ignore some other useless files
+*.swp
+*~
+.project
+.DS_Store
