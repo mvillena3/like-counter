@@ -5,7 +5,11 @@ gem 'rails', '3.2.5'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-
+# Front-end Gems
+gem 'bootstrap-sass'
+gem 'haml'
+gem 'haml-rails'
+gem 'jquery-rails', '~> 2.0.2'
 
 group :development do
   gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
@@ -28,7 +32,6 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails', '~> 2.0.2'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
