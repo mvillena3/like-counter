@@ -83,7 +83,7 @@ class UsersController < ApplicationController
   end
 
   def like_page
-    @users = User.all
+    @users = User.all order: name
   end
 
   def likes
