@@ -2,7 +2,7 @@ LikeCounter::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
 
   resources :users do
-    collection do
+    member do
       put 'likes'
     end
   end
@@ -10,6 +10,7 @@ LikeCounter::Application.routes.draw do
   root to: 'users#like_page'
   match '/like', to: 'users#like_page'
 
+  match '/signout', to: 'sessions#destroy', via: :delete
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

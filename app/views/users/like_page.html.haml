@@ -9,8 +9,14 @@
     %tr
       %td= user.name
       %td= user.likes
-      %td= button_to 'Like me', likes_users_path(id: user.id), method: :put
+      - unless current_user == user
+        %td= button_to 'Like me', likes_user_path(user.id), method: :put
 
 = link_to 'Sign up', new_user_path
 |
-= link_to "Sign in", new_session_path
+- if signed_in?
+  = link_to "Sign out", signout_path, method: 'delete'
+- else
+  = link_to "Sign in", new_session_path
+%br
+= current_user.name if current_user
