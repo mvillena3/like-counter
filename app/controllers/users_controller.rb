@@ -82,10 +82,12 @@ class UsersController < ApplicationController
     end
   end
 
+  # This page displays the users with a like button next to each
   def like_page
     @users = User.all order: name
   end
 
+  # This method increments a user's likes by 5
   def likes
     user = User.find_by_id!(params[:id])
     user.increment!(:likes, 5)
