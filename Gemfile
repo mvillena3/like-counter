@@ -10,6 +10,7 @@ gem 'bootstrap-sass'
 gem 'haml'
 gem 'haml-rails'
 gem 'jquery-rails', '~> 2.0.2'
+gem 'thin'
 
 group :development do
   gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
