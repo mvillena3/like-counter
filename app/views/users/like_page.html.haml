@@ -1,16 +1,27 @@
 %h1 Like him if you want 
 
+- if current_user
+  %br/
+  %br/
+  %h2 Me: #{current_user.name}
+  %h3
+    %b My likes: 
+    = current_user.likes
+  %br/
+  %br/
+
 %table
   %tr
     %th Name
     %th Likes
 
   - @users.each do |user|
-    %tr
-      %td= user.name
-      %td= user.likes
-      - unless current_user == user
-        %td= button_to 'Like me', likes_user_path(user.id), method: :put
+    - if current_user != user
+      %tr
+        %td= user.name
+        %td= user.likes
+        - unless current_user == user
+          %td= button_to 'Like me', likes_user_path(user.id), method: :put
 
 = link_to 'Sign up', new_user_path
 |
