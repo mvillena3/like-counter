@@ -1,6 +1,6 @@
 
 class UsersController < ApplicationController
-  before_filter :signed_in, only: :index
+  before_filter :signed_in, only: [:index, :edit]
   # GET /users
   # GET /users.json
   def index
@@ -91,15 +91,14 @@ class UsersController < ApplicationController
 
   # This method increments a user's likes by 5
   def likes
-    if signed_in?
-      user_liked = User.find_by_id!(params[:id])
-      user_liked.increment!(:likes, 5)
+    if signed_in? && current_user.likes > 0
+      liked_user = User.find_by_id!(params[:id])
       user_who_likes = current_user
-      user_who_likes.decrement!(:likes, 5)
-      user_liked.save!
-      user_who_likes.save!
-      sign_in current_user 
+      User.incr_decr_likes(liked_user, user_who_likes)
+      sign_in user_who_likes
       redirect_to root_path 
+    elsif signed_in? && current_user.likes <= 0
+      redirect_to root_path, flash: { error: "Sorry you don't have enough likes"}
     else
       redirect_to new_session_path, flash: { notice: 'Hey, we need to know who you are first' }
     end
@@ -108,7 +107,7 @@ class UsersController < ApplicationController
   private
   
   def signed_in
-    redirect_to new_session_path, notice: 'Gotta sign in' unless signed_in?
+    redirect_to new_session_path, notice: 'Gotta sign in to do that' unless signed_in?
   end
 
 end

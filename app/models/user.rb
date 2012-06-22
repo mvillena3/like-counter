@@ -26,18 +26,18 @@ class User < ActiveRecord::Base
   validates :password, presence: true, on: :create
   validates :password_confirmation, presence: true, on: :create
 
+
+  def self.incr_decr_likes(liked_user, user_who_likes)
+      liked_user.increment!(:likes, 5)
+      user_who_likes.decrement!(:likes, 5)
+      liked_user.save!
+      user_who_likes.save!
+  end
+
   private
 
   def create_remember_token
     self.remember_token = SecureRandom.urlsafe_base64
   end
 
-  def incr_decr_likes(liked_user)
-      user_liked.increment!(:likes, 5)
-      user_who_likes = current_user
-      user_who_likes.decrement!(:likes, 5)
-      user_liked.save!
-      user_who_likes.save!
-      sign_in current_user 
-  end
 end
