@@ -10,3 +10,7 @@
       %td= user.name
       %td= user.likes
       %td= button_to 'Like me', likes_users_path(id: user.id), method: :put
+
+= link_to 'Sign up', new_user_path
+|
+= link_to "Sign in", new_session_path
