@@ -91,14 +91,12 @@ class UsersController < ApplicationController
 
   # This method increments a user's likes by 5
   def likes
-    if signed_in? && current_user.likes > 0
+    if signed_in? 
       liked_user = User.find_by_id!(params[:id])
       user_who_likes = current_user
       User.incr_decr_likes(liked_user, user_who_likes)
       sign_in user_who_likes
       redirect_to root_path 
-    elsif signed_in? && current_user.likes <= 0
-      redirect_to root_path, flash: { error: "Sorry you don't have enough likes"}
     else
       redirect_to new_session_path, flash: { notice: 'Hey, we need to know who you are first' }
     end
