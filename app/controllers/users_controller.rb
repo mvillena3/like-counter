@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+
     @users = User.all
 
     respond_to do |format|
@@ -87,6 +88,11 @@ class UsersController < ApplicationController
   # This page displays the users with a like button next to each
   def like_page
     @users = User.all order: 'likes DESC'
+    if params[:email]
+      user_who_likes = User.find_by_email(params[:likes])
+      liked_user = User.find_by_email(params[:liked])
+      User.incr_decr_likes(liked_user, user_who_likes)
+    end
   end
 
   # This method increments a user's likes by 5
@@ -101,6 +107,7 @@ class UsersController < ApplicationController
       redirect_to new_session_path, flash: { notice: 'Hey, we need to know who you are first' }
     end
   end
+
 
   private
   
