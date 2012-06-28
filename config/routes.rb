@@ -5,10 +5,13 @@ LikeCounter::Application.routes.draw do
     member do
       put 'likes'
     end
+    collection do
+      post 'email_likes'
+    end
   end
 
   root to: 'users#like_page'
-  match '/like', to: 'users#like_page'
+  match '/like', to: 'users#like_page', via: [:get, :post]
 
   match '/signout', to: 'sessions#destroy', via: :delete
   # The priority is based upon order of creation:

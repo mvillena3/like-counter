@@ -85,13 +85,17 @@ class UsersController < ApplicationController
     end
   end
 
-  # This page displays the users with a like button next to each
+  # This page displays the users with their number of likes 
   def like_page
     @users = User.all order: 'likes DESC'
+  end
+
+  def email_likes
     if params[:email]
       user_who_likes = User.find_by_email(params[:likes])
       liked_user = User.find_by_email(params[:liked])
       User.incr_decr_likes(liked_user, user_who_likes)
+      redirect_to root_path
     end
   end
 
