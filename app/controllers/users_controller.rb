@@ -95,6 +95,7 @@ class UsersController < ApplicationController
       user_who_likes = User.find_by_email(params[:likes])
       liked_user = User.find_by_email(params[:liked])
       User.incr_decr_likes(liked_user, user_who_likes)
+      redirect_to root_path
     end
   end
 
