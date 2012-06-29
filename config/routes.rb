@@ -4,9 +4,9 @@ LikeCounter::Application.routes.draw do
   resources :users do
     member do
       put 'likes'
+      post 'email_likes'
     end
     collection do
-      post 'email_likes'
     end
   end
 

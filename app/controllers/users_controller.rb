@@ -92,10 +92,13 @@ class UsersController < ApplicationController
 
   def email_likes
     if params[:email]
-      user_who_likes = User.find_by_email(params[:likes])
-      liked_user = User.find_by_email(params[:liked])
+      user_who_likes = User.find_by_email(params[:who_likes])
+      liked_user = User.find_by_id(params[:id])
       User.incr_decr_likes(liked_user, user_who_likes)
-      redirect_to root_path
+      success_msg = "Thanks for liking.  Feel free to close the window if you'd like"
+      redirect_to root_path, flash: { success: success_msg } 
+    else
+      redirect_to root_path, flash: { error: 'Invalid request' }
     end
   end
 
@@ -114,7 +117,7 @@ class UsersController < ApplicationController
 
 
   private
-  
+
   def signed_in
     redirect_to new_session_path, notice: 'Gotta sign in to do that' unless signed_in?
   end

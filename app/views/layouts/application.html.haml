@@ -1,7 +1,7 @@
 !!! 5
 %html
   %head
-    %title LikeCounter
+    %title MailTracker 
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
@@ -11,5 +11,6 @@
         %div{ class: "alert alert-#{key}"}= val
       = yield
       - if Rails.env.development?
+        = button_to "Dummy Like Button", email_likes_user_path(id: 2, likes: 'jb@gmail.com', email: true) 
         = debug(params)
         = debug(current_user.name) if current_user
