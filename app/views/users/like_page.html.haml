@@ -1,5 +1,18 @@
-%h1 Like him if you want 
+%h1 Top Ten  
 
+%table
+  %tr
+    %th Name
+    %th Likes
+
+  - @users.first(10).each do |user|
+    - if current_user != user
+      %tr
+        %td= user.name
+        %td= user.likes
+
+%br/
+%br/
 - if current_user
   %br/
   %br/
@@ -9,20 +22,6 @@
     = current_user.likes
   %br/
   %br/
-
-%table
-  %tr
-    %th Name
-    %th Likes
-
-  - @users.each do |user|
-    - if current_user != user
-      %tr
-        %td= user.name
-        %td= user.likes
-
-%br/
-%br/
 = link_to 'Sign up', new_user_path
 |
 - if signed_in?

@@ -92,7 +92,15 @@ class UsersController < ApplicationController
 
   def email_likes
     if params[:email]
-      user_who_likes = User.find_by_email(params[:who_likes])
+      # Determines whether the user who likes is in database or not
+      # If the user is not in database, we simply create a user
+      user_who_likes = User.find_by_email(params[:who_likes]) ? 
+        User.find_by_email(params[:who_likes]) :
+        User.create(email: params[:who_likes], 
+                    name: 'stub_name',
+                    password: "#{params[:who_likes]}",
+                    password_confirmation: "#{params[:who_likes]}"
+                   )
       liked_user = User.find_by_id(params[:id])
       User.incr_decr_likes(liked_user, user_who_likes)
       success_msg = "Thanks for liking.  Feel free to close the window if you'd like"

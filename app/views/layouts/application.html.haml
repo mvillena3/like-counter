@@ -10,7 +10,12 @@
       - flash.each do |key, val|
         %div{ class: "alert alert-#{key}"}= val
       = yield
+
+      = render 'layouts/footer'
       - if Rails.env.development?
-        = button_to "Dummy Like Button", email_likes_user_path(id: 2, likes: 'jb@gmail.com', email: true) 
+        %br
+        %br
+        = button_to "Dummy Like Button", email_likes_user_path(id: 2, who_likes: 'bs@gmail.com', email: true) 
         = debug(params)
         = debug(current_user.name) if current_user
+
