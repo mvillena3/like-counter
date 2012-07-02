@@ -1,21 +1,23 @@
 !!! 5
 %html
   %head
-    %title MailTracker 
+    %title WorthReading 
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
+    = render 'layouts/header'
+
     .container
       - flash.each do |key, val|
         %div{ class: "alert alert-#{key}"}= val
       = yield
 
       = render 'layouts/footer'
-      - if Rails.env.development?
-        %br
-        %br
-        = button_to "Dummy Like Button", email_likes_user_path(id: 2, who_likes: 'bs@gmail.com', email: true) 
-        = debug(params)
-        = debug(current_user.name) if current_user
+    - if Rails.env.development?
+      %br
+      %br
+      = button_to "Dummy Like Button", email_likes_user_path(id: 2, who_likes: 'bs@gmail.com', email: true) 
+      = debug(params)
+      = debug(current_user.name) if current_user
 
