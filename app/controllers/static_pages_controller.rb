@@ -11,4 +11,7 @@ class StaticPagesController < ApplicationController
   
   def home
   end
+
+  def whats_this
+  end
 end

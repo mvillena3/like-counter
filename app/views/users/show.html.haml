@@ -1,15 +1,17 @@
-%p#notice= notice
-
-%p
-  %b Name:
-  = @user.name
-%p
-  %b Email:
-  = @user.email
-%p
-  %b Likes:
-  = @user.likes
-
-= link_to 'Edit', edit_user_path(@user)
-\|
-= link_to 'Home', root_path
+- provide(:title, @user.name)
+.row
+  .span6.offset2
+    %p
+      %b Name:
+      = @user.name
+    %p
+      %b Email:
+      = @user.email
+    %p
+      %b Likes:
+      = @user.likes
+    %br/
+    %p
+      %b Distribution Lists:
+      %br/
+      Lists will go here...

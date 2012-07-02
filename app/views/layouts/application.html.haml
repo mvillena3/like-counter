@@ -1,7 +1,7 @@
 !!! 5
 %html
   %head
-    %title WorthReading 
+    %title= page_title yield(:title)
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
@@ -17,7 +17,8 @@
     - if Rails.env.development?
       %br
       %br
-      = button_to "Dummy Like Button", email_likes_user_path(id: 2, who_likes: 'bs@gmail.com', email: true) 
+      = button_to "Dummy Like Button", 
+          email_likes_user_path(id: 2, who_likes: 'jb@gmail.com', email: true) 
       = debug(params)
       = debug(current_user.name) if current_user
 

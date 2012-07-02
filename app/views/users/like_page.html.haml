@@ -1,18 +1,28 @@
-%br
-%br 
+- provide(:title, "Welcome to WorthReading. Sign/Sign Up to get started")
+%br/
+%br/ 
+
 .row
-  .span8
-    .hero-unit
-      %p
-        When you send the same message to several people would you like to:
-        %ul
-          %li send individual messages to each of them?
-          %li discover when they open the message?
-          %li discover if they like the message? 
-        Then sign up for WorthReading which can give you these features
-        %br
-      %p.center
-        = link_to 'Sign up', new_user_path, class: 'btn btn-large btn-info'
+  -unless signed_in?
+    .span8
+      .hero-unit
+        %p
+          When you send the same message to several people would you like to:
+          %ul
+            %li send individual messages to each of them?
+            %li discover when they open the message?
+            %li discover if they like the message? 
+          Then sign up for WorthReading which can give you these features
+          %br/
+        %p.center
+          = link_to 'Sign up', new_user_path, class: 'btn btn-large btn-info'
+  - else
+    .span6
+      .hero-unit.center
+        %h2 Me: #{current_user.name}
+        %h3
+          %b My likes: 
+          = current_user.likes
   .span3.offset1
     %h2 Top Ten People Worth Reading
     %table
@@ -25,15 +35,3 @@
           %tr
             %td= user.name
             %td= user.likes
-
-    %br/
-    %br/
-    - if current_user
-      %br/
-      %br/
-      %h2 Me: #{current_user.name}
-      %h3
-        %b My likes: 
-        = current_user.likes
-      %br/
-      %br/

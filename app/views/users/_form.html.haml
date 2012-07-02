@@ -21,4 +21,7 @@
         = f.label :password_confirmation, "Confirm Password"
         = f.password_field :password_confirmation
       .actions
-        = f.submit 'Sign up'
+        - if current_user
+          = f.submit 'Submit Changes'
+        - else
+          = f.submit 'Sign up'
