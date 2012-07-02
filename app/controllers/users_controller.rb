@@ -1,6 +1,6 @@
 
 class UsersController < ApplicationController
-  before_filter :signed_in, only: [:index, :edit]
+  before_filter :signed_in, only: [:index, :edit, :show]
   # GET /users
   # GET /users.json
   def index
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         sign_in @user
-        format.html { redirect_to @user, success: 'Welcom to your profile page.' }
+        format.html { redirect_to @user, success: 'Welcome to your profile page.' }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }

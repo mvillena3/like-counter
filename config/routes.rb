@@ -4,9 +4,11 @@ LikeCounter::Application.routes.draw do
   get "static_pages/contact"
   match "/contact", to: "static_pages#contact"
   get "static_pages/help"
-  match"/help", to: "static_pages#help"
+  match "/help", to: "static_pages#help"
   get "static_pages/home"
 
+  match "whats_this", to: "static_pages#whats_this"
+  get "static_pages/whats_this"
   resources :sessions, only: [:new, :create, :destroy]
 
   resources :users do

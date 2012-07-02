@@ -9,8 +9,10 @@
     = render 'layouts/header'
 
     .container
-      - flash.each do |key, val|
-        %div{ class: "alert alert-#{key}"}= val
+      .row
+        .span6.offset3.center
+          - flash.each do |key, val|
+            %div{ class: "alert alert-#{key}"}= val
       = yield
 
       = render 'layouts/footer'

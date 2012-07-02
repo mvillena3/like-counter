@@ -1,18 +1,23 @@
-%h1 Sign In
+.row 
+  .span7.offset2
+    %h1 Sign In
 
-= form_for(:session, url: sessions_path) do |f|
+.row
+  .span6.offset4
 
-  = f.label :email
-  %br/
-  = f.text_field :email
-  %br/
+    = form_for(:session, url: sessions_path) do |f|
 
-  = f.label :password
-  %br/
-  = f.password_field :password
+      = f.label :email
+      %br/
+      = f.text_field :email
+      %br/
 
-  = f.submit "Sign-in"
+      = f.label :password
+      %br/
+      = f.password_field :password
 
-= link_to "Home", root_path 
-|
-= link_to "Sign Up", new_user_path
+      = f.submit "Sign-in"
+
+    = link_to "Home", root_path 
+    | Not a member?
+    = link_to "Sign Up", new_user_path
