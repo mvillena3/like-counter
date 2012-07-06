@@ -1,4 +1,5 @@
 LikeCounter::Application.routes.draw do
+  # Static pages
   get "static_pages/about"
   match "/about", to: "static_pages#about"
   get "static_pages/contact"
@@ -6,12 +7,14 @@ LikeCounter::Application.routes.draw do
   get "static_pages/help"
   match "/help", to: "static_pages#help"
   get "static_pages/home"
-
   match "whats_this", to: "static_pages#whats_this"
   get "static_pages/whats_this"
+
+  # REST Resources
   resources :sessions, only: [:new, :create, :destroy]
 
   resources :users do
+    resources :emails, only: [:create, :destroy, :index, :show]
     member do
       put 'likes'
       post 'email_likes'

@@ -1,0 +1,13 @@
+%p
+  %b From:
+  = @email.from
+%p
+  %b To:
+  = @email.to
+%p
+  %b To:
+  = @email.subject
+%p
+  %b Body:
+  = @email.body
+= link_to 'Back', emails_path

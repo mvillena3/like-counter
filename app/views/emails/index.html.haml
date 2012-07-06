@@ -1,0 +1,14 @@
+%h1 Listing emails
+%table
+  %tr
+    %th From
+    %th To
+    %th Subject
+    %th
+    %th
+  - @emails.each do |email|
+    %tr
+      %td= email.from
+      %td= email.to
+      %td= email.subject
+      %td= link_to 'Show', email
