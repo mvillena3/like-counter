@@ -44,13 +44,6 @@ class EmailsController < ApplicationController
       @email.save
       render text: "Email Received"
     else
-      # Remove after
-      Email.create(
-        from: params['sender'], 
-        to: params['recipient'], 
-        subject: params['subject'],
-        body: params['body-plain']
-      )
       render text: "Not a registered user"
     end
   end

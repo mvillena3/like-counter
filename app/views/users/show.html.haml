@@ -12,21 +12,24 @@
       = @user.likes
     %br/
     %p
-      %b Distribution Lists:
+      %b Subscribers
       %br/
-      Lists will go here...
+      Subscribers will be listed here...
 
     %br/
     %p
       %b Emails:
-      %table
-        %tr
-          %th To
-          %th Subject
-          %th
-          %th
-        - @emails.each do |email|
+      - if !@emails.empty?
+        %table
           %tr
-            %td= email.to
-            %td= email.subject
-            %td= link_to 'Show', user_email_path(@user, email)
+            %th To
+            %th Subject
+            %th
+            %th
+          - @emails.each do |email|
+            %tr
+              %td= email.to
+              %td= email.subject
+              %td= link_to 'Show', user_email_path(@user, email)
+      - else
+        No emails yet. Send an email.
