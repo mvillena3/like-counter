@@ -6,7 +6,7 @@ class EmailsController < ApplicationController
 
   # GET /emails
   def index
-    if params[:user_id]
+    if @user = params[:user_id]
       @emails = User.find(params[:user_id]).emails
     else
       @emails = Email.all
@@ -21,6 +21,8 @@ class EmailsController < ApplicationController
   # GET /emails/1
   def show
     @email = Email.find(params[:id])
+    @user = User.find(params[:user_id])
+#    @user = User.find(params[:user_id])
 
     respond_to do |format|
       format.html # show.html.erb

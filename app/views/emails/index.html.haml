@@ -11,4 +11,7 @@
       %td= email.from
       %td= email.to
       %td= email.subject
-      %td= link_to 'Show', email
+      - if @user
+        %td= link_to 'Show', user_email_path(@user, email)
+      - else
+        %td= link_to 'Show', email
