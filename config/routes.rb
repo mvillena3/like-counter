@@ -12,10 +12,12 @@ LikeCounter::Application.routes.draw do
 
   # REST Resources
   resources :sessions, only: [:new, :create, :destroy]
-  resources :emails, only: [:create, :destroy, :index, :show]
+
+  # Delete after nesting can be determined
+  resources :emails, only: [:create, :destroy, :index, :show] 
 
   resources :users do
-#    resources :emails, only: [:create, :destroy, :index, :show]
+    resources :emails, only: [:create, :destroy, :index, :show]
     member do
       put 'likes'
       post 'email_likes'

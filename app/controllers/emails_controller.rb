@@ -6,7 +6,12 @@ class EmailsController < ApplicationController
 
   # GET /emails
   def index
-    @emails = Email.all
+    if params[:user_id]
+      @emails = User.find(params[:user_id]).emails
+    else
+      @emails = Email.all
+    end
+
 
     respond_to do |format|
       format.html # index.html.erb
@@ -27,15 +32,18 @@ class EmailsController < ApplicationController
   # heroku app at app_name.herokuapp.com/emails
   # POST /emails
   def create
-    @email = Email.new(
-      from: params['sender'], 
-      to: params['recipient'], 
-      subject: params['subject'],
-      body: params['body-plain']
-    )
-
-    @email.save
-    render text: "Email Received"
+    if @user = User.find_by_email(params['sender'])
+      @email = @user.emails.new(
+        from: params['sender'], 
+        to: params['recipient'], 
+        subject: params['subject'],
+        body: params['body-plain']
+      )
+      @email.save
+      render text: "Email Received"
+    else
+      render text: "Not a registered user"
+    end
   end
 
   # DELETE /emails/1

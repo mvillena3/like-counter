@@ -16,4 +16,6 @@
       %br/
       Lists will go here...
 
-= link_to "Emails", user_emails_path
+    %p
+      %b Emails:
+= link_to "Emails", user_emails_path(@user.id)
