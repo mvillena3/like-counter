@@ -1,6 +1,6 @@
 
 class UsersController < ApplicationController
-  before_filter :signed_in, only: [:index, :edit, :show]
+#  before_filter :signed_in, only: [:index, :edit, :show]
   # GET /users
   # GET /users.json
   def index
